@@ -1,14 +1,21 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Buscador de libros
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-item>
+    <ion-input #searchString placeholder="Tecnología" type="text"></ion-input>
+    <button ion-button item-right color="secondary" (click)="onSearch(searchString.value)">
+      Buscar
+    </button>
+  </ion-item>
+  <ion-list *ngIf="!loading">
+    <ion-item *ngFor="let book of books" (click)="bookDetail(book.isbn13)">
+      {{ book.title }}
+    </ion-item>
+  </ion-list>
 </ion-content>
